@@ -29,7 +29,7 @@ export const register = (newUser) => async (dispatch) => {
   });
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const addRes = await axios.post("/user/register", newUser);
+    const addRes = await axios.post("https://management-tool-mern.herokuapp.com/user/register", newUser);
     await history.push("/login");
     dispatch({
       type: REGISTER_SUCCESS,
@@ -50,7 +50,7 @@ export const login = (input) => async (dispatch) => {
   });
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const loginRes = await axios.post("/user/login", input);
+    const loginRes = await axios.post("https://management-tool-mern.herokuapp.com/user/login", input);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: loginRes.data,
@@ -84,7 +84,7 @@ export const deleteAccount = (userId,token) => async (dispatch) => {
   });
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    await axios.delete("/user/deleteUser/" + userId, {
+    await axios.delete("https://management-tool-mern.herokuapp.com/user/deleteUser/" + userId, {
       headers: { "x-auth-token": token },
     });
     dispatch({
@@ -100,7 +100,7 @@ export const editprofil = (newUser) => async (dispatch) => {
     type: EDIT_USER,
   });
   try {
-    const editRes = await axios.put(`/user/${newUser.userId}`,newUser);
+    const editRes = await axios.put(`https://management-tool-mern.herokuapp.com/user/${newUser.userId}`,newUser);
  dispatch({
       type: EDIT_SUCCESS,
       payload: editRes.data,
@@ -121,7 +121,7 @@ export const addClient = (newClient) => async (dispatch) => {
   });
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const addRes = await axios.post("/client/" + newClient.userId, newClient);
+    const addRes = await axios.post("https://management-tool-mern.herokuapp.com/client/" + newClient.userId, newClient);
     dispatch({
       type: ADD_SUCCESS,
       payload: addRes.data,
@@ -141,7 +141,7 @@ export const removeClient = (Client) => async (dispatch) => {
     type: REMOVE_CLIENT,
   });
   try {
-    const removeRes = await axios.delete(`/client/${Client._id}`);
+    const removeRes = await axios.delete(`https://management-tool-mern.herokuapp.com/client/${Client._id}`);
  dispatch({
       type: REMOVE_SUCCESS,
       payload: removeRes.data,
